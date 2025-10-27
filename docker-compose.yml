@@ -9,4 +9,4 @@ services:
     volumes:
       - ./postgres-data:/data/postgres
     ports:
-      - 57800:57800
+      - 57800:5432

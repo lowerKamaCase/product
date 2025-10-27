@@ -34,7 +34,7 @@ func (handler *ProductHandler) Create() http.HandlerFunc {
 			return
 		}
 
-		product := NewProduct(body.Name)
+		product := NewProduct(body.Name, body.Description, body.Images)
 
 		createdProduct, err := handler.ProductRepository.Create(product)
 		if err != nil {
@@ -64,6 +64,8 @@ func (handler *ProductHandler) Update() http.HandlerFunc {
 		link, err := handler.ProductRepository.Update(&Product{
 			Model: gorm.Model{ID: uint(id)},
 			Name:  body.Name,
+			Description: body.Description,
+			Images: body.Images,
 		})
 		if err != nil {
 			http.Error(w, err.Error(), http.StatusBadRequest)
