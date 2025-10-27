@@ -6,6 +6,7 @@ import (
 
 	"github.com/lowerKamaCase/product/configs"
 	"github.com/lowerKamaCase/product/pkg/db"
+	"github.com/lowerKamaCase/product/pkg/middleware"
 	"github.com/lowerKamaCase/product/pkg/product"
 )
 
@@ -25,7 +26,7 @@ func main() {
 	Addr := fmt.Sprintf(":%d", PORT)
 	server := http.Server{
 		Addr:    Addr,
-		Handler: mux,
+		Handler: middleware.LogMiddleware(mux),
 	}
 
 	fmt.Println("Server started at port: ", PORT)
